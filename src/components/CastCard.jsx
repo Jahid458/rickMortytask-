@@ -33,7 +33,7 @@ const CastCard = ({ character }) => {
 
       {/* Name Section - Left Aligned */}
       <div
-        className="text-base font-semibold px-2 py-1 self-start"
+        className="text-sm font-semibold px-2 py-1 self-start"
         style={{
           textShadow: "0 0 5px rgba(0, 0, 0, 0.7)",
         }}

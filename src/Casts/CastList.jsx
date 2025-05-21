@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Link } from "react-router-dom";
 
 const CastList = () => {
   const [characters, setCharacters] = useState([]);
@@ -13,7 +14,7 @@ const CastList = () => {
     axios
       .get("https://rickandmortyapi.com/api/character")
       .then((response) => {
-        setCharacters(response.data.results.slice(0, 10)); // show first 10 characters
+        setCharacters(response.data.results); 
       })
       .catch((error) => {
         console.error("Error fetching characters:", error);
@@ -25,9 +26,11 @@ const CastList = () => {
       {/* Title and View All Button */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-white">Meet The Cast</h2>
-        <button className="text-sm text-lime-400 border border-lime-400 px-3 py-1 rounded-md hover:bg-lime-400 hover:text-black transition-all duration-200">
-          View All
-        </button>
+        <Link to="/allcast">
+          <button className="text-sm text-lime-400 border border-lime-400 px-3 py-1 rounded-md hover:bg-lime-400 hover:text-black transition-all duration-200">
+            View All
+          </button>
+        </Link>
       </div>
 
       {/* Swiper Carousel */}
