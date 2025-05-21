@@ -9,9 +9,7 @@ const CharacterDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
-        `https://rickandmortyapi.com/api/character/${id}`
-      );
+      const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
       const data = await res.json();
       setCharacter(data);
 
@@ -23,68 +21,65 @@ const CharacterDetail = () => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
-  if (!character) return <div><LoadingSpinner /></div>;
+  if (!character) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
-      <div className="flex flex-col md:flex-row items-stretch gap-4 w-full max-w-5xl p-6">
-        {/* Left: Character Image with Name Overlay */}
-        <div className="w-full md:w-1/2 flex justify-center items-center relative">
+    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 sm:p-6">
+      <div className="flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl p-4 sm:p-6">
+        {/* Left: Character Image with Name on top */}
+        <div className="w-full md:w-1/2 flex flex-col items-center relative md:mt-8">
+          {/* Name above image for all devices */}
+          <div className="text-teal-300 text-lg font-semibold mb-2 text-center">
+            {character.name}
+          </div>
+
           <img
             src={character.image}
             alt={character.name}
-            className="rounded-xl w-60 h-60 object-cover"
+            className="rounded-xl w-48 h-48 sm:w-60 sm:h-60 object-cover"
           />
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 px-3 py-1 text-teal-300 text-lg font-semibold rounded">
-            {character.name}
-          </div>
         </div>
 
         {/* Vertical Divider */}
-        <div className="hidden md:block w-[2px] bg-[#9DFE00] h-[110px] mt-36 mr-20" />
+        <div className="hidden md:block w-[2px] bg-[#9DFE00] h-[110px] self-center mx-6" />
 
         {/* Right: Info */}
-        <div className="w-full md:w-1/2 space-y-4">
-          {/* Removed h2 here since it's now above the image */}
-
+        <div className="w-full md:w-1/2 space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow">
-              <span className="text-teal-300 font-medium">Status</span>
-              <br />
-              {character.status}
-            </div>
-            <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow">
-              <span className="text-teal-300 font-medium">Species</span>
-              <br />
-              {character.species}
-            </div>
-            <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow">
-              <span className="text-teal-300 font-medium">Gender</span>
-              <br />
-              {character.gender}
-            </div>
+            {["Status", "Species", "Gender"].map((title) => {
+              const value = character[title.toLowerCase()];
+              return (
+                <div
+                  key={title}
+                  className="bg-white/5 p-4 rounded-xl border border-white/10 shadow"
+                >
+                  <span className="text-white font-medium">{title}</span>
+                  <br />
+                  {value}
+                </div>
+              );
+            })}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow">
-              <span className="text-teal-300 font-medium">Origin</span>
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow">
+              <span className="text-white font-medium">Origin</span>
               <br />
               {character.origin.name}
             </div>
-            <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow">
-              <span className="text-teal-300 font-medium">Location</span>
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow">
+              <span className="text-white font-medium">Location</span>
               <br />
               {character.location.name}
             </div>
           </div>
 
-          <div className="bg-white/5 p-3 rounded-xl border border-white/10 shadow max-h-40 overflow-y-auto">
-            <span className="text-teal-300 font-medium block mb-2">
-              Episodes
-            </span>
-            <ul className="list-disc list-inside space-y-1">
+          {/* Episodes with green scrollbar */}
+          <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-[#9DFE00] scrollbar-track-gray-700">
+            <span className="text-white font-medium block mb-3">Episodes</span>
+            <ul className="list-disc list-inside space-y-1 text-sm sm:text-base">
               {episodes.map((ep) => (
                 <li key={ep.id}>{ep.name}</li>
               ))}
