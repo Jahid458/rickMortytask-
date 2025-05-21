@@ -25,7 +25,7 @@ const CastList = () => {
     <div className="p-4">
       {/* Title and View All Button */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-white">Meet The Cast</h2>
+        <h2 className="text-xl font-semibold text-[#14D9E6]">Meet The Cast</h2>
         <Link to="/allcast">
           <button className="text-sm text-lime-400 border border-lime-400 px-3 py-1 rounded-md hover:bg-lime-400 hover:text-black transition-all duration-200">
             View All
