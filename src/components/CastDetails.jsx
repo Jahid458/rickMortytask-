@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const CharacterDetail = () => {
     fetchData();
   }, []);
 
-  if (!character) return <div>Loading...</div>;
+  if (!character) return <div><LoadingSpinner /></div>;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-6">
