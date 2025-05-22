@@ -3,6 +3,7 @@ import BubbleImg from "../../public/bubble.png";
 import BackgroundImage from "../../public/bg1.png";
 import CastList from "../Casts/CastList";
 
+
 const Banner = () => {
   return (
     <div className="relative bg-[#1E1E1E] text-white overflow-hidden">
@@ -58,6 +59,7 @@ const Banner = () => {
         {/* Cast List Section */}
         <div className="mt-10">
           <CastList />
+        
         </div>
       </div>
     </div>
