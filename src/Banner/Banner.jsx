@@ -2,7 +2,7 @@ import RickIcon from "../../public/portal.png";
 import BubbleImg from "../../public/bubble.png";
 import BackgroundImage from "../../public/bg1.png";
 import CastList from "../Casts/CastList";
-
+import { FaRegCirclePlay } from "react-icons/fa6";
 
 const Banner = () => {
   return (
@@ -43,11 +43,18 @@ const Banner = () => {
             <span className="italic text-white">WIKI</span>
           </div>
 
-          {/* Description */}
+          {/* Description and Button */}
           <div className="flex md:flex-row flex-col-reverse gap-4 items-center">
-            <button className="mt-6 bg-[#84F729] w-fit text-white font-semibold py-2 px-6 rounded-full hover:scale-105 transition-all">
-              ▶ Watch Now
-            </button>
+            <a
+              href="https://www.youtube.com/watch?v=KQ9Cgdsa9tc&feature=youtu.be"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 bg-[#84F729] w-fit text-white font-semibold py-2 px-6 rounded-full hover:scale-105 transition-all flex items-center gap-2"
+            >
+              <FaRegCirclePlay className="text-lg" />
+              Watch Now
+            </a>
+
             <p className="mt-6 lg:max-w-xl text-sm sm:text-start text-[#84F729] text-left">
               Brilliant but boozy scientist Rick hijacks his fretful teenage
               grandson, Morty, for wild escapades in other worlds and alternate
@@ -59,7 +66,6 @@ const Banner = () => {
         {/* Cast List Section */}
         <div className="mt-10">
           <CastList />
-        
         </div>
       </div>
     </div>
