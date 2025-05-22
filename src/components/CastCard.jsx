@@ -6,7 +6,7 @@ const CastCard = ({ character }) => {
       className="min-w-[180px] max-w-[180px] cursor-pointer relative overflow-hidden"
       style={{
         background: "rgba(255, 255, 255, 0.21)",
-        borderRadius: "16px",
+        borderRadius: "8px",
         boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
         backdropFilter: "blur(7.5px)",
         WebkitBackdropFilter: "blur(7.5px)",
@@ -25,7 +25,7 @@ const CastCard = ({ character }) => {
         className="w-full h-40 object-cover rounded-lg mb-3"
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.4)",
-          borderRadius: "12px",
+          borderRadius: "4px",
           objectFit: "cover",
           filter: "drop-shadow(0 0 5px rgba(0,0,0,0.3))",
         }}

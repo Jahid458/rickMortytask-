@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CastCard from "./CastCard";
 import { Link } from "react-router-dom";
-import BackgroundImage from "../../public/image 64-13.png"; // ✅ Adjust path if needed
+import BackgroundImage from "../../public/image 64-13.png";
 
 const AllCast = () => {
   const [characters, setCharacters] = useState([]);
@@ -34,12 +34,14 @@ const AllCast = () => {
         <img src="/Logo.png" alt="Logo" className="h-16 w-auto" />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 p-10">
+   
+      <div className="relative z-10 w-11/12 mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-[#14D9E6]">The Cast</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1  sm:grid-cols-3 lg:grid-cols-5 gap-10">
+          
           {characters.map((character) => (
-            <Link to={`/cast/${character.id}`} key={character.id}>
+            <Link to={`/cast/${character.id}`} key={character.id} className="flex justify-center items-center">
+              {/* CastCard Component */}
               <CastCard character={character} />
             </Link>
           ))}

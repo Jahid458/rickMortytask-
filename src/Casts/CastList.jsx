@@ -22,7 +22,7 @@ const CastList = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="w-11/12 mx-auto">
       {/* Title and View All Button */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-[#14D9E6]">Meet The Cast</h2>
