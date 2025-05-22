@@ -20,11 +20,10 @@ const Episodes = () => {
   }, []);
 
   return (
-    <div className="p-6 text-white">
+    <div className="p-6 text-white ">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-[#14D9E6]">Episodes</h2>
       </div>
-
       <Swiper
         modules={[Navigation]}
         spaceBetween={8}

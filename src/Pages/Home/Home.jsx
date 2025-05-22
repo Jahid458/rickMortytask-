@@ -15,7 +15,7 @@ const Home = () => {
           alt="Rick Side"
           className="absolute top-10 right-0 h-[80%] max-w-[400px] opacity-10 object-contain z-0 pointer-events-none hidden md:block"
         />
-        <div className="relative z-10">
+        <div className="relative z-10 w-11/12 mx-auto">
           <Episodes />
           <Location />
         </div>
