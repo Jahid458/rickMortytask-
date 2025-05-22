@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import bgImage from "../../public/bg2.png";
+import { BiHeart } from "react-icons/bi";
+import { GiAlienStare } from "react-icons/gi";
+import { FaGenderless} from "react-icons/fa";
+import { FiMapPin } from "react-icons/fi";
+import { IoLocationOutline } from "react-icons/io5";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { FaEarthAfrica } from "react-icons/fa6";
+import { RiPlayList2Line } from "react-icons/ri";
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -25,66 +34,94 @@ const CharacterDetail = () => {
 
   if (!character) return <LoadingSpinner />;
 
+  // Dynamic Gender Icon
+  const genderIcon = character.gender === "Male"
+    ? <BsGenderMale className="text-[#9DFE00] text-2xl mb-1" />
+    : character.gender === "Female"
+    ? <BsGenderFemale className="text-[#9DFE00] text-2xl mb-1" />
+    : <FaGenderless className="text-[#9DFE00] text-2xl mb-1" />;
+
+  const icons = {
+    Status: <BiHeart className="text-[#9DFE00] text-2xl mb-1" />,
+    Species: <GiAlienStare className="text-[#9DFE00] text-2xl mb-1" />,
+    Gender: genderIcon,
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 sm:p-6">
-      <div className="flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl p-4 sm:p-6">
-        {/* Left: Character Image with Name on top */}
-        <div className="w-full md:w-1/2 flex flex-col items-center relative md:mt-8">
-          {/* Name above image for all devices */}
+    <div className="relative min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+      
+      {/* 🔁 Background Image */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <img
+          src={bgImage}
+          alt="Background"
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        />
+      </div>
+
+      {/* 🔼 Content */}
+      <div className="relative z-10 flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl p-4 sm:p-6">
+        
+        {/* Left: Character Image */}
+        <div className="w-full md:w-1/2 flex flex-col items-center relative md:mt-36">
           <div className="text-teal-300 text-lg font-semibold mb-2 text-center">
             {character.name}
           </div>
-
           <img
             src={character.image}
             alt={character.name}
-            className="rounded-xl w-48 h-48 sm:w-60 sm:h-60 object-cover"
+            className="rounded-xl w-48 h-48 sm:w-60 sm:h-60 object-cover bg-white/5 p-4 border border-[#9DFE00]/10 shadow-sm"
           />
         </div>
 
-        {/* Vertical Divider */}
+        {/* Divider */}
         <div className="hidden md:block w-[2px] bg-[#9DFE00] h-[110px] self-center mx-6" />
 
         {/* Right: Info */}
         <div className="w-full md:w-1/2 space-y-6">
+          
+          {/* Status, Species, Gender */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {["Status", "Species", "Gender"].map((title) => {
               const value = character[title.toLowerCase()];
               return (
                 <div
                   key={title}
-                  className="bg-white/5 p-4 rounded-xl border border-white/10 shadow"
+                  className="bg-white/5 p-4 rounded-xl border border-white/10 shadow flex flex-col items-start"
                 >
-                  <span className="text-white font-medium">{title}</span>
-                  <br />
-                  {value}
+                  {icons[title]}
+                  <span className="text-white font-medium mb-1">{title}</span>
+                  <div className="text-left">{value}</div>
                 </div>
               );
             })}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow">
-              <span className="text-white font-medium">Origin</span>
-              <br />
-              {character.origin.name}
+          {/* Origin & Location */}
+          <div className="grid grid-cols-1 gap-4">
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow flex flex-col items-start">
+              <FaEarthAfrica className="text-[#9DFE00] text-2xl mb-1" />
+              <span className="text-white font-medium mb-1">Origin</span>
+              <div className="text-left">{character.origin.name}</div>
             </div>
-            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow">
-              <span className="text-white font-medium">Location</span>
-              <br />
-              {character.location.name}
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow flex flex-col items-start">
+              <IoLocationOutline className="text-[#9DFE00] text-2xl mb-1" />
+              <span className="text-white font-medium mb-1">Location</span>
+              <div className="text-left">{character.location.name}</div>
             </div>
           </div>
 
-          {/* Episodes with green scrollbar */}
+          {/* Episodes */}
           <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-[#9DFE00] scrollbar-track-gray-700">
+            <RiPlayList2Line className="text-[#9DFE00] text-2xl mb-1"/>
             <span className="text-white font-medium block mb-3">Episodes</span>
-            <ul className="list-disc list-inside space-y-1 text-sm sm:text-base">
+            <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-left">
               {episodes.map((ep) => (
                 <li key={ep.id}>{ep.name}</li>
               ))}
             </ul>
           </div>
+
         </div>
       </div>
     </div>

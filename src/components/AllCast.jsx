@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CastCard from "./CastCard";
 import { Link } from "react-router-dom";
-
+import BackgroundImage from "../../public/image 64-13.png";// ⬅️ Update this to your image path
 
 const AllCast = () => {
   const [characters, setCharacters] = useState([]);
@@ -11,7 +11,7 @@ const AllCast = () => {
     axios
       .get("https://rickandmortyapi.com/api/character")
       .then((response) => {
-        setCharacters(response.data.results); // show all characters from first page
+        setCharacters(response.data.results);
       })
       .catch((error) => {
         console.error("Error fetching characters:", error);
@@ -19,15 +19,26 @@ const AllCast = () => {
   }, []);
 
   return (
-    <div className="p-10 bg-[#1E1E1E] min-h-screen">
-      <h2 className="text-2xl font-bold text-white mb-6">Meet The Cast</h2>
+    <div className="relative bg-[#1E1E1E] min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <img
+          src={BackgroundImage}
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
-        {characters.map((character) => (
-        <Link to={`/cast/${character.id}`} key={character.id}>
-          <CastCard key={character.id} character={character} />
-        </Link>
-        ))}
+      {/* Main Content */}
+      <div className="relative z-10 p-10">
+        <h2 className="text-2xl font-bold mb-6 text-[#14D9E6]">The Cast</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+          {characters.map((character) => (
+            <Link to={`/cast/${character.id}`} key={character.id}>
+              <CastCard character={character} />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
