@@ -4,7 +4,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import bgImage from "../../public/bg2.png";
 import { BiHeart } from "react-icons/bi";
 import { GiAlienStare } from "react-icons/gi";
-import { FaGenderless} from "react-icons/fa";
+import { FaGenderless } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
@@ -34,12 +34,14 @@ const CharacterDetail = () => {
 
   if (!character) return <LoadingSpinner />;
 
-  // Dynamic Gender Icon
-  const genderIcon = character.gender === "Male"
-    ? <BsGenderMale className="text-[#9DFE00] text-2xl mb-1" />
-    : character.gender === "Female"
-    ? <BsGenderFemale className="text-[#9DFE00] text-2xl mb-1" />
-    : <FaGenderless className="text-[#9DFE00] text-2xl mb-1" />;
+  const genderIcon =
+    character.gender === "Male" ? (
+      <BsGenderMale className="text-[#9DFE00] text-2xl mb-1" />
+    ) : character.gender === "Female" ? (
+      <BsGenderFemale className="text-[#9DFE00] text-2xl mb-1" />
+    ) : (
+      <FaGenderless className="text-[#9DFE00] text-2xl mb-1" />
+    );
 
   const icons = {
     Status: <BiHeart className="text-[#9DFE00] text-2xl mb-1" />,
@@ -48,8 +50,7 @@ const CharacterDetail = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-900 text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden">
-      
+    <div className="relative min-h-screen bg-gray-900 text-white overflow-hidden pb-10">
       {/* 🔁 Background Image */}
       <div className="absolute inset-0 z-0 opacity-10">
         <img
@@ -59,11 +60,15 @@ const CharacterDetail = () => {
         />
       </div>
 
+      {/* 🔼 Logo */}
+      <div className="relative z-10 py-6 flex justify-center items-center">
+        <img src="/Logo.png" alt="Logo" className="h-16 w-auto" />
+      </div>
+
       {/* 🔼 Content */}
-      <div className="relative z-10 flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl p-4 sm:p-6">
-        
+      <div className="relative z-10 flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl mx-auto p-4 sm:p-6">
         {/* Left: Character Image */}
-        <div className="w-full md:w-1/2 flex flex-col items-center relative md:mt-36">
+        <div className="w-full md:w-1/2 flex flex-col items-center">
           <div className="text-teal-300 text-lg font-semibold mb-2 text-center">
             {character.name}
           </div>
@@ -79,7 +84,6 @@ const CharacterDetail = () => {
 
         {/* Right: Info */}
         <div className="w-full md:w-1/2 space-y-6">
-          
           {/* Status, Species, Gender */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {["Status", "Species", "Gender"].map((title) => {
@@ -113,7 +117,7 @@ const CharacterDetail = () => {
 
           {/* Episodes */}
           <div className="bg-white/5 p-4 rounded-xl border border-white/10 shadow max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-[#9DFE00] scrollbar-track-gray-700">
-            <RiPlayList2Line className="text-[#9DFE00] text-2xl mb-1"/>
+            <RiPlayList2Line className="text-[#9DFE00] text-2xl mb-1" />
             <span className="text-white font-medium block mb-3">Episodes</span>
             <ul className="list-disc list-inside space-y-1 text-sm sm:text-base text-left">
               {episodes.map((ep) => (
@@ -121,7 +125,6 @@ const CharacterDetail = () => {
               ))}
             </ul>
           </div>
-
         </div>
       </div>
     </div>

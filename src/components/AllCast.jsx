@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CastCard from "./CastCard";
 import { Link } from "react-router-dom";
-import BackgroundImage from "../../public/image 64-13.png";// ⬅️ Update this to your image path
+import BackgroundImage from "../../public/image 64-13.png"; // ✅ Adjust path if needed
 
 const AllCast = () => {
   const [characters, setCharacters] = useState([]);
@@ -27,6 +27,11 @@ const AllCast = () => {
           alt="Background"
           className="w-full h-full object-cover"
         />
+      </div>
+
+      {/* Logo */}
+      <div className="relative z-10 py-6 flex justify-center items-center">
+        <img src="/Logo.png" alt="Logo" className="h-16 w-auto" />
       </div>
 
       {/* Main Content */}
