@@ -14,7 +14,7 @@ const CastList = () => {
     axios
       .get("https://rickandmortyapi.com/api/character")
       .then((response) => {
-        setCharacters(response.data.results); 
+        setCharacters(response.data.results);
       })
       .catch((error) => {
         console.error("Error fetching characters:", error);
@@ -23,17 +23,15 @@ const CastList = () => {
 
   return (
     <div className="w-11/12 mx-auto">
-      {/* Title and View All Button */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-[#14D9E6]">Meet The Cast</h2>
         <Link to="/allcast">
-          <button className="text-sm text-lime-400 border border-lime-400 px-3 py-1 rounded-md hover:bg-lime-400 hover:text-black transition-all duration-200">
+          <button className="text-sm text-white border border-lime-400 px-3 py-1 rounded-md hover:bg-lime-400 hover:text-black transition-all duration-200">
             View All
           </button>
         </Link>
       </div>
 
-      {/* Swiper Carousel */}
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
@@ -50,7 +48,6 @@ const CastList = () => {
           </SwiperSlide>
         ))}
 
-        {/* Navigation Arrows */}
         <div
           className="swiper-button-prev"
           style={{

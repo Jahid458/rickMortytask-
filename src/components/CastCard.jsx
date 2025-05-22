@@ -1,5 +1,3 @@
-import React from "react";
-
 const CastCard = ({ character }) => {
   return (
     <div
@@ -7,10 +5,14 @@ const CastCard = ({ character }) => {
       style={{
         background: "rgba(255, 255, 255, 0.21)",
         borderRadius: "8px",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 4px 30px #9DFE00",
         backdropFilter: "blur(7.5px)",
         WebkitBackdropFilter: "blur(7.5px)",
         border: "1px solid rgba(255, 255, 255, 0.3)",
+        borderTop: "1px solid #9DFE00",
+        borderBottom: "1px solid #00FFFF",
+        borderLeft: "1px solid #9DFE00",
+        borderRight: "1px solid #14D9E6",
         padding: "14px",
         clipPath: "polygon(100% 0, 100% 73%, 54% 100%, 0 100%, 0 0)",
         color: "white",
@@ -18,7 +20,6 @@ const CastCard = ({ character }) => {
         flexDirection: "column",
       }}
     >
-      {/* Character Image */}
       <img
         src={character.image}
         alt={character.name}
@@ -31,7 +32,6 @@ const CastCard = ({ character }) => {
         }}
       />
 
-      {/* Name Section - Left Aligned */}
       <div
         className="text-sm font-semibold px-2 py-1 self-start"
         style={{

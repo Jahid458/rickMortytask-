@@ -7,7 +7,6 @@ import { FaRegCirclePlay } from "react-icons/fa6";
 const Banner = () => {
   return (
     <div className="relative bg-[#1E1E1E] text-white overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0 z-0 opacity-10">
         <img
           src={BackgroundImage}
@@ -16,12 +15,9 @@ const Banner = () => {
         />
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-4">
-        {/* Heading Section */}
         <div className="flex flex-col items-center text-center">
           <div className="flex flex-wrap items-center justify-center gap-3 text-4xl sm:text-6xl font-bold">
-            {/* THE with Bubble */}
             <div className="relative flex items-center justify-start">
               <img
                 src={BubbleImg}
@@ -43,7 +39,6 @@ const Banner = () => {
             <span className="italic text-white">WIKI</span>
           </div>
 
-          {/* Description and Button */}
           <div className="flex md:flex-row flex-col-reverse gap-4 items-center">
             <a
               href="https://www.youtube.com/watch?v=KQ9Cgdsa9tc&feature=youtu.be"
@@ -63,7 +58,6 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* Cast List Section */}
         <div className="mt-10">
           <CastList />
         </div>
