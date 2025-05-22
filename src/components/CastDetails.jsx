@@ -65,7 +65,7 @@ const CharacterDetail = () => {
       </div>
 
       <div className="relative z-10 flex flex-col md:flex-row items-stretch gap-6 w-full max-w-5xl mx-auto p-4 sm:p-6">
-        <div className="w-full md:w-1/2 flex flex-col md:items-start md:justify-start items-center justify-center">
+        <div className="w-full md:w-1/2 flex flex-col md:items-center md:justify-center items-center justify-center">
           <div className="text-teal-300 text-lg font-semibold mb-2 text-center">
             {character.name}
           </div>
